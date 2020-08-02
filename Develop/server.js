@@ -44,13 +44,17 @@ app.post("/api/notes", function(req, res){
         var newNote = req.body;
         console.log(newNote);
         // Give each new note a unique id that is based title
-        newNote.id = newNote.title;
+        // newNote.id = newNote.title;
         if(notes.length === 0){
             newNote.id = newNote.title;
         }
         // Add new note to the array of notes
-        notes.push(newNote)
-
+        notes.push(newNote);
+        // Add id to arrat elements based on their index
+        for(var i = 1; i < notes.length; i++){
+            notes[i].id = i.toString();
+        }
+        // Write notes to file
         fs.writeFile("./db/db.json", JSON.stringify(notes), function(err, data){
             if (err) throw err;
             res.sendStatus(200);
