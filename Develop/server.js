@@ -44,7 +44,6 @@ app.post("/api/notes", function(req, res){
         var newNote = req.body;
         console.log(newNote);
         // Give each new note a unique id that is based title
-        // newNote.id = newNote.title;
         if(notes.length === 0){
             newNote.id = newNote.title;
         }
